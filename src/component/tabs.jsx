@@ -2,6 +2,8 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import { ListScreen } from './list_screen';
 import { FavoriteScreen } from './favorite_screen';
 import { SearchScreen } from './search_screen';
+import { ProfileScreen } from './profile_screen';
+import { ListDetailTabs } from './list_detail_screen';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Tab = createBottomTabNavigator();
@@ -12,11 +14,12 @@ export function MyTabs() {
             initialRouteName="Home"
             screenOptions={{
                 tabBarActiveTintColor: '#ec1d24',
+                headerShown: false
             }}
         >
             <Tab.Screen
-                name="Liste des héros Marvel"
-                component={ListScreen}
+                name="Navigation des héros Marvel"
+                component={ListDetailTabs}
                 options={{
                     tabBarLabel: 'Marvel',
                     tabBarIcon: ({ color, size }) => (
@@ -41,6 +44,16 @@ export function MyTabs() {
                     tabBarLabel: 'Recherche',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="search-web" color={color} size={size} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Votre profil"
+                component={ProfileScreen}
+                options={{
+                    tabBarLabel: 'Profil',
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="face-man-profile" color={color} size={size} />
                     ),
                 }}
             />

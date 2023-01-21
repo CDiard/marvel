@@ -1,7 +1,7 @@
 import {fetchAllCharacters} from "../service/api_marvel";
-import {ActivityIndicator, StyleSheet, FlatList, Image, Text, View} from "react-native";
+import {ActivityIndicator, StyleSheet, TouchableOpacity, FlatList, Image, Text, View} from "react-native";
 import  React, { useEffect, useState } from 'react';
-import { DetailScreen } from './detail_screen';
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const styles = StyleSheet.create({
     viewScreen: {
@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#423e3b",
+        // marginTop: 40,
     },
     flatlist: {
         width: "100%",
@@ -22,9 +23,20 @@ const styles = StyleSheet.create({
         backgroundColor: "#e0dddb",
         borderRadius: 8,
         overflow: "hidden",
+    },
+    flatbutton: {
+        width: "100%",
+        height: "100%",
         display: "flex",
         flexDirection: "row",
         justifyContent: "flex-start",
+    },
+    flatbuttonIcon: {
+        position: "absolute",
+        bottom: 0,
+        right: 0,
+        color: "#ec1d24",
+        fontSize: 40,
     },
     imageList: {
         width: "auto",
@@ -41,7 +53,7 @@ const styles = StyleSheet.create({
 });
 
 
-export function ListScreen() {
+export function ListScreen({ navigation }) {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [limit, setLimit] = useState(20);
@@ -77,9 +89,16 @@ export function ListScreen() {
                     keyExtractor={({ id }, index) => id}
                     renderItem={({ item }) => (
                         <View style={styles.viewList}>
-                            <Image source={{ uri: item.thumbnail.path+'.'+item.thumbnail.extension }} style={styles.imageList} />
-                            <Text style={styles.titreList}>{item.name}</Text>
-                            {/*https://reactnative.dev/docs/touchableopacity*/}
+                            <TouchableOpacity
+                                style={styles.flatbutton}
+                                onPress={() => navigation.navigate('Détail du héro Marvel', {
+                                    cardMarvel: item,
+                                })}
+                            >
+                                <Image source={{ uri: item.thumbnail.path+'.'+item.thumbnail.extension }} style={styles.imageList} />
+                                <Text style={styles.titreList}>{item.name}</Text>
+                                <MaterialCommunityIcons name="arrow-right-circle-outline" style={styles.flatbuttonIcon} />
+                            </TouchableOpacity>
                         </View>
                     )}
                 />
