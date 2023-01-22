@@ -47,16 +47,16 @@ export function MyTabs() {
                     ),
                 }}
             />
-            <Tab.Screen
-                name="Votre profil"
-                component={ProfileScreen}
-                options={{
-                    tabBarLabel: 'Profil',
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="face-man-profile" color={color} size={size} />
-                    ),
-                }}
-            />
+            {/*<Tab.Screen*/}
+            {/*    name="Votre profil"*/}
+            {/*    component={ProfileScreen}*/}
+            {/*    options={{*/}
+            {/*        tabBarLabel: 'Profil',*/}
+            {/*        tabBarIcon: ({ color, size }) => (*/}
+            {/*            <MaterialCommunityIcons name="face-man-profile" color={color} size={size} />*/}
+            {/*        ),*/}
+            {/*    }}*/}
+            {/*/>*/}
         </Tab.Navigator>
     );
 }
