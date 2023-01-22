@@ -9,6 +9,25 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
     },
+    sousTitreDetail: {
+        fontSize: 22,
+        fontWeight: "bold",
+        textAlign: "center",
+    },
+    titreDetail: {
+        fontSize: 26,
+        fontWeight: "bold",
+        textAlign: "center",
+        color: "#ec1d24",
+    },
+    descriptionDetail: {
+        fontSize: 19,
+        textAlign: "justify",
+    },
+    texteDetail: {
+        fontSize: 17,
+        textAlign: "left",
+    },
 });
 
 export function DetailScreen({ route }) {
@@ -17,36 +36,38 @@ export function DetailScreen({ route }) {
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
             <ScrollView style={styles.scrollDetail}>
-                <Text>{ cardMarvel.name },{ cardMarvel.description }</Text>
-                {cardMarvel.urls.map((item) => (
+                <Text style={styles.titreDetail}>{ cardMarvel.name }</Text>
+                <Text style={styles.descriptionDetail}>{ cardMarvel.description }</Text>
+                {cardMarvel.urls.map((item, index) => (
                     <Button
+                        key={index}
                         title={ 'Voir '+item.type }
                         onPress={() => Linking.openURL(item.url)}
                     />
                 ))}
                 <Image source={{ uri: cardMarvel.thumbnail.path+'.'+cardMarvel.thumbnail.extension }} style={styles.imageDetail} />
-                <Text>Les { cardMarvel.comics.returned } comic{ cardMarvel.comics.returned>1 ? 's' : '' } :</Text>
+                <Text style={styles.sousTitreDetail}>Apparut dans { cardMarvel.comics.returned } comic{ cardMarvel.comics.returned>1 ? 's' : '' }</Text>
                 <View>
-                    {cardMarvel.comics.items.map((item, key) => (
-                        <Text>{ key+1 }. { item.name }</Text>
+                    {cardMarvel.comics.items.map((item, index) => (
+                        <Text style={styles.texteDetail} key={index}>{ index+1 }. { item.name }</Text>
                     ))}
                 </View>
-                <Text>Les { cardMarvel.series.returned } serie{ cardMarvel.series.returned>1 ? 's' : '' } :</Text>
+                <Text style={styles.sousTitreDetail}>Apparut dans { cardMarvel.series.returned } serie{ cardMarvel.series.returned>1 ? 's' : '' }</Text>
                 <View>
-                    {cardMarvel.series.items.map((item, key) => (
-                        <Text>{ key+1 }. { item.name }</Text>
+                    {cardMarvel.series.items.map((item, index) => (
+                        <Text style={styles.texteDetail} key={index}>{ index+1 }. { item.name }</Text>
                     ))}
                 </View>
-                <Text>Les { cardMarvel.stories.returned } storie{ cardMarvel.stories.returned>1 ? 's' : '' } :</Text>
+                <Text style={styles.sousTitreDetail}>Apparut dans { cardMarvel.stories.returned } storie{ cardMarvel.stories.returned>1 ? 's' : '' }</Text>
                 <View>
-                    {cardMarvel.stories.items.map((item, key) => (
-                        <Text>{ key+1 }. { item.type } - { item.name }</Text>
+                    {cardMarvel.stories.items.map((item, index) => (
+                        <Text style={styles.texteDetail} key={index}>{ index+1 }. { item.type } - { item.name }</Text>
                     ))}
                 </View>
-                <Text>Les { cardMarvel.events.returned } event{ cardMarvel.events.returned>1 ? 's' : '' } :</Text>
+                <Text style={styles.sousTitreDetail}>Apparut dans { cardMarvel.events.returned } event{ cardMarvel.events.returned>1 ? 's' : '' }</Text>
                 <View>
-                    {cardMarvel.events.items.map((item, key) => (
-                        <Text>{ key+1 }. { item.name }</Text>
+                    {cardMarvel.events.items.map((item, index) => (
+                        <Text style={styles.texteDetail} key={index}>{ index+1 }. { item.name }</Text>
                     ))}
                 </View>
             </ScrollView>
