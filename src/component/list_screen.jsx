@@ -1,7 +1,18 @@
 import {fetchAllCharacters} from "../service/api_marvel";
-import {ActivityIndicator, StyleSheet, TouchableOpacity, FlatList, Image, Text, View} from "react-native";
+import {
+    ActivityIndicator,
+    StyleSheet,
+    TouchableOpacity,
+    FlatList,
+    Image,
+    Text,
+    View,
+    Button,
+    Linking
+} from "react-native";
 import  React, { useEffect, useState } from 'react';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import {addFavorite} from "../service/storage";
 
 const styles = StyleSheet.create({
     viewScreen: {
@@ -72,9 +83,19 @@ export function ListScreen({ navigation }) {
         }
     };
 
+    const setFavorite = async (id) => {
+        try {
+            await addFavorite(id);
+            //console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     useEffect(() => {
         fetchDetails();
     }, []);
+
     return (
         <View style={styles.viewScreen}>
             {isLoading ? <ActivityIndicator/> : (
@@ -98,6 +119,7 @@ export function ListScreen({ navigation }) {
                                 <Image source={{ uri: item.thumbnail.path+'.'+item.thumbnail.extension }} style={styles.imageList} />
                                 <Text style={styles.titreList}>{item.name}</Text>
                                 <MaterialCommunityIcons name="arrow-right-circle-outline" style={styles.flatbuttonIcon} />
+                                <Button style={{ width: 40, height: 40, backgroundColor: "#000000" }} title="Ajouter aux favovis" onPress={() => setFavorite(item.id)}/>
                             </TouchableOpacity>
                         </View>
                     )}
