@@ -119,7 +119,7 @@ export function ListScreen({ navigation }) {
                                 <Image source={{ uri: item.thumbnail.path+'.'+item.thumbnail.extension }} style={styles.imageList} />
                                 <Text style={styles.titreList}>{item.name}</Text>
                                 <MaterialCommunityIcons name="arrow-right-circle-outline" style={styles.flatbuttonIcon} />
-                                {/*<Button style={{ width: 40, height: 40, backgroundColor: "#000000" }} title="Ajouter aux favovis" onPress={() => setFavorite(item.id)}/>*/}
+                                <Button style={{ width: 40, height: 40, backgroundColor: "#000000" }} title="Ajouter aux favovis" onPress={() => setFavorite(item.id)}/>
                             </TouchableOpacity>
                         </View>
                     )}

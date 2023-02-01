@@ -19,8 +19,24 @@ export async function addFavorite(idMarvel) {
 
 export async function getFavorites() {
     try {
-        return await AsyncStorage.getItem("favoriteMarvel");
+        let getMarvels = await AsyncStorage.getItem("favoriteMarvel");
+        if (getMarvels != null) {
+            getMarvels = getMarvels.split(',')
+            return getMarvels;
+        } else {
+            return [];
+        }
+
     } catch (e) {
+        console.error(e);
+    }
+    console.log('Done. get data')
+}
+
+export async function delFavorites() {
+    try {
+        await AsyncStorage.removeItem('favoriteMarvel')
+    } catch(e) {
         console.error(e);
     }
     console.log('Done. get data')
