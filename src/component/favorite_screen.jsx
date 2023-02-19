@@ -85,10 +85,11 @@ export function FavoriteScreen() {
     };
 
     useEffect(() => {
+        //Faire vérif si les données sont chargé ? Impossible, aucune solution trouvée
          const actualisation = navigation.addListener('focus', () => {
             fetchFavorites();
-        });
-        return actualisation;
+         });
+         return actualisation;
     }, [navigation]);
 
     return (
