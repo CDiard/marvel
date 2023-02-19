@@ -61,6 +61,13 @@ const styles = StyleSheet.create({
         flexShrink: 1,
         fontSize: 18,
     },
+    favList: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        color: "#e015b4",
+        fontSize: 40,
+    },
 });
 
 
@@ -119,7 +126,8 @@ export function ListScreen({ navigation }) {
                                 <Image source={{ uri: item.thumbnail.path+'.'+item.thumbnail.extension }} style={styles.imageList} />
                                 <Text style={styles.titreList}>{item.name}</Text>
                                 <MaterialCommunityIcons name="arrow-right-circle-outline" style={styles.flatbuttonIcon} />
-                                <Button style={{ width: 40, height: 40, backgroundColor: "#000000" }} title="Ajouter aux favovis" onPress={() => setFavorite(item.id)}/>
+                                {/*<Button style={styles.favList} title="♡" onPress={() => setFavorite(item.id)}/>*/}
+                                <MaterialCommunityIcons name="cards-heart" style={styles.favList} onPress={() => setFavorite(item.id)}/>
                             </TouchableOpacity>
                         </View>
                     )}
